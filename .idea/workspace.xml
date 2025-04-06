@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6b2ef2ba-61b6-483a-9554-52570e3666f8" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Python Script" />
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/.venv/Lib/site-packages/rest_framework_simplejwt/views.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2rDSqvgzyTvXO5EN40jfJT7Ab9L" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Django Server.streaming_project.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vanya/PycharmProjects/streamin_proj/frontend/eslint.config.js&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\Vanya\\PycharmProjects\\streamin_proj\\frontend\\node_modules\\eslint&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Shelf.Project.Settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Vanya\\PycharmProjects\\streamin_proj\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\frontend\src\ui\BodyComponents\Tasks" />
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\frontend\src\ui\BodyComponents" />
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj" />
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\streaming_project\streaming_project" />
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\streaming_project\users" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="streaming_project" type="Python.DjangoServer" factoryName="Django server">
+      <module name="streaming_project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="streaming_project.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-67fca87a943a-c986f194a52a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.11799.259" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b2ef2ba-61b6-483a-9554-52570e3666f8" name="Changes" comment="" />
+      <created>1736092347135</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736092347135</updated>
+      <workItem from="1736092349245" duration="719000" />
+      <workItem from="1736193049528" duration="3495000" />
+      <workItem from="1736764809779" duration="925000" />
+      <workItem from="1737538742192" duration="2682000" />
+      <workItem from="1737959830437" duration="911000" />
+      <workItem from="1738314081745" duration="1187000" />
+      <workItem from="1738747440475" duration="8503000" />
+      <workItem from="1739167164163" duration="665000" />
+      <workItem from="1739446050577" duration="1865000" />
+      <workItem from="1740382800257" duration="597000" />
+      <workItem from="1740391747128" duration="1193000" />
+      <workItem from="1740929104817" duration="1458000" />
+      <workItem from="1740934446540" duration="1294000" />
+      <workItem from="1741006648101" duration="9713000" />
+      <workItem from="1741171340656" duration="176000" />
+      <workItem from="1741192873215" duration="601000" />
+      <workItem from="1741203503384" duration="5403000" />
+      <workItem from="1741241376173" duration="1641000" />
+      <workItem from="1741253044160" duration="1042000" />
+      <workItem from="1741300623390" duration="3636000" />
+      <workItem from="1741459627851" duration="347000" />
+      <workItem from="1741459994705" duration="62000" />
+      <workItem from="1741460067685" duration="2872000" />
+      <workItem from="1741471087813" duration="1892000" />
+      <workItem from="1741477739285" duration="2112000" />
+      <workItem from="1741718790595" duration="3769000" />
+      <workItem from="1741880093213" duration="4335000" />
+      <workItem from="1741897059802" duration="13737000" />
+      <workItem from="1742031544828" duration="1211000" />
+      <workItem from="1742075306452" duration="580000" />
+      <workItem from="1742132386318" duration="2996000" />
+      <workItem from="1742148153418" duration="968000" />
+      <workItem from="1742190070397" duration="6151000" />
+      <workItem from="1742462647280" duration="951000" />
+      <workItem from="1742541214589" duration="808000" />
+      <workItem from="1742563881724" duration="2908000" />
+      <workItem from="1742570325048" duration="13000" />
+      <workItem from="1742653319542" duration="3934000" />
+      <workItem from="1742730038472" duration="3828000" />
+      <workItem from="1742735444147" duration="416000" />
+      <workItem from="1742816833725" duration="1376000" />
+      <workItem from="1742820979735" duration="5864000" />
+      <workItem from="1742833423128" duration="3000" />
+      <workItem from="1742928379733" duration="4914000" />
+      <workItem from="1743009653671" duration="805000" />
+      <workItem from="1743056149279" duration="2594000" />
+      <workItem from="1743154376489" duration="902000" />
+      <workItem from="1743173265145" duration="1140000" />
+      <workItem from="1743257826815" duration="3780000" />
+      <workItem from="1743328379119" duration="3905000" />
+      <workItem from="1743338829605" duration="3770000" />
+      <workItem from="1743388968528" duration="421000" />
+      <workItem from="1743443624540" duration="569000" />
+      <workItem from="1743514399483" duration="1931000" />
+      <workItem from="1743518966916" duration="2913000" />
+      <workItem from="1743530310220" duration="131000" />
+      <workItem from="1743530688096" duration="2129000" />
+      <workItem from="1743533914249" duration="589000" />
+      <workItem from="1743534521528" duration="10676000" />
+      <workItem from="1743553217836" duration="51000" />
+      <workItem from="1743553283213" duration="5318000" />
+      <workItem from="1743561063725" duration="236000" />
+      <workItem from="1743561381452" duration="756000" />
+      <workItem from="1743607321731" duration="3110000" />
+      <workItem from="1743614617764" duration="20000" />
+      <workItem from="1743614652360" duration="34000" />
+      <workItem from="1743625251978" duration="1760000" />
+      <workItem from="1743627870118" duration="6621000" />
+      <workItem from="1743636122215" duration="520000" />
+      <workItem from="1743719372181" duration="97000" />
+      <workItem from="1743752968410" duration="2454000" />
+      <workItem from="1743862549275" duration="2212000" />
+      <workItem from="1743866975408" duration="484000" />
+      <workItem from="1743868400030" duration="9612000" />
+      <workItem from="1743884100688" duration="11449000" />
+      <workItem from="1743938617458" duration="1084000" />
+      <workItem from="1743942258150" duration="12325000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+</project>

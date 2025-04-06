@@ -1,0 +1,36 @@
+/* Общие переменные и стили */
+:root {
+  --dark-purple-1: #191325;
+  --dark-purple-2: #4A2A82;
+  --accent-purple-1: #4A11AE;
+  --accent-purple-2: #7A45D6;
+  --light-purple: #936CD6;
+  --text-light: #ffffff;
+  --text-muted: #e0d0ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(dark-purple-1);
+  color: #333;
+  width: 100%;
+}
+
+/* Лейаут приложения */
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+}
