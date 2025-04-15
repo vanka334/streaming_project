@@ -77,8 +77,10 @@ class DepartmentService:
 
 class UserService:
     @staticmethod
-    def get_user_by_id(self, user_id):
+    def get_user_by_id(user_id):
         try:
+            user = User.objects.get(pk=user_id)
+
             return User.objects.get(pk=user_id)
         except ObjectDoesNotExist:
             return None
@@ -94,24 +96,24 @@ class UserService:
 class ProjectService:
     @staticmethod
     def get_all_projects():
-        return Project.objects.prefetch_related('departament').all()
+        return Project.objects.prefetch_related('users').all()
 
     @staticmethod
     def get_project_by_id(project_id):
         try:
-            return Project.objects.prefetch_related('departament').get(pk=project_id)
+            return Project.objects.prefetch_related('users').get(pk=project_id)
         except Project.DoesNotExist:
             return None
 
     @staticmethod
-    def create_project(name, description, departament_ids=None):
+    def create_project(name, description, users):
+        # Сначала создаём проект без поля many-to-many
         project = Project.objects.create(
             name=name,
-            description=description
+            description=description,
         )
-        if departament_ids:
-            departments = Department.objects.filter(id__in=departament_ids)
-            project.departament.set(departments)
+        # Затем устанавливаем связь для поля many-to-many
+        project.users.set(users)
         return project
 
     @staticmethod

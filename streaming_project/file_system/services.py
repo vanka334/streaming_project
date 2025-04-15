@@ -8,9 +8,11 @@ class FileSystemService:
    def get_struct_by_directory(department, directory_id = None):
        if directory_id:
            folder = get_object_or_404(Folder, id=directory_id)
+           print(folder)
        else:
            folder = department.folder
-       folders = folder.subfolders.filter(department=department)
+       folders = folder.subfolders.all()
+       print(folders)
        files = folder.files.all()
        response = {
            'folders': folders,

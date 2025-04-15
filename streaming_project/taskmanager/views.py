@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 from rest_framework.views import APIView
@@ -11,6 +13,7 @@ from .serializers import StatusSerializer, TaskSerializer, CommentSerializer
 from .services import StatusService, TaskService, CommentService
 
 class StatusListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     @swagger_auto_schema(tags=["Status"])
     def get(self, request):
         statuses = StatusService.get_all_statuses()
@@ -27,6 +30,7 @@ class StatusListAPIView(APIView):
 
 
 class StatusDetailAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     @swagger_auto_schema(tags=["Status"])
     def get(self, request, pk):
         status = StatusService.get_status_by_id(pk)
@@ -54,9 +58,12 @@ class StatusDetailAPIView(APIView):
         return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
 
 class TaskListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     @swagger_auto_schema(tags=["Task"])
     def get(self, request):
-        tasks = TaskService.get_all_tasks()
+        user = request.user
+
+        tasks = TaskService.get_all_tasks( user)
         serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data)
 
@@ -70,6 +77,7 @@ class TaskListAPIView(APIView):
 
 
 class TaskDetailAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     @swagger_auto_schema(tags=["Task"])
     def get(self, request, pk):
         task = TaskService.get_task_by_id(pk)
@@ -108,6 +116,7 @@ class TaskDetailAPIView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
 class CommentListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     @swagger_auto_schema(tags=["Comment"])
     def get(self, request):
         comments = CommentService.get_all_comments()
@@ -124,13 +133,7 @@ class CommentListAPIView(APIView):
 
 
 class CommentDetailAPIView(APIView):
-    @swagger_auto_schema(tags=["Comment"])
-    def get(self, request, pk):
-        comment = CommentService.get_comment_by_id(pk)
-        if comment:
-            serializer = CommentSerializer(comment)
-            return Response(serializer.data)
-        return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+    permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(tags=["Comment"])
     def put(self, request, pk):
@@ -149,3 +152,12 @@ class CommentDetailAPIView(APIView):
         if comment:
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(["GET"])
+def get_comment_by_task(request):
+    task_id = request.query_params.get('task_id')
+    comments = CommentService.get_comments_by_task(task_id)
+    if comments:
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+    return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)

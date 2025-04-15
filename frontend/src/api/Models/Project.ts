@@ -1,8 +1,11 @@
-import {Department} from "./Department.ts";
+
+
+import { User } from "./User";
 
 export interface Project {
-  id: number;
+  id?: number; // При создании может не присутствовать
   name: string;
   description: string;
-  departments?: Department[] | number[];
+  users: number[];
+   users_detail?: User[];// Связанные пользователи
 }

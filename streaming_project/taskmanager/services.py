@@ -1,4 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+
 from .models import Status, Task, Comment
 
 class StatusService:
@@ -58,15 +60,39 @@ class TaskService:
 
 
     @staticmethod
-    def get_all_tasks():
-        return Task.objects.all()
+    def get_all_tasks(user):
+        departments = user.departments.all()
+        if departments.count() > 1:
+            # Определяем отделы
+            managment_depts = departments.filter(isManagement=True)
+            non_managment_depts = departments.filter(isManagement=False)
+
+            # Все задачи отдела, где isManagment=False
+            dept_tasks = Task.objects.filter(setter__departments__in=non_managment_depts)
+
+            # Только задачи пользователя в управленческих отделах
+            user_tasks = Task.objects.filter(
+                Q(setter=user) | Q(executor=user),
+                setter__departments__in=managment_depts
+            )
+
+            # Объединяем и убираем дубли
+            tasks = (dept_tasks | user_tasks).distinct()
+        else:
+            # Если обычный сотрудник — возвращаем только его задачи
+            tasks = Task.objects.filter(Q(setter=user) | Q(executor=user)).distinct()
+
+        return tasks
+
 
     @staticmethod
-    def update_task(task_id, name=None, description=None, status=None, executor=None):
+    def update_task(task_id, name=None, description=None, status=None,setter=None, executor=None):
         task = TaskService.get_task_by_id(task_id)
         if task:
             if name is not None:
                 task.name = name
+            if setter is not None:
+                task.setter = setter
             if description is not None:
                 task.description = description
             if status is not None:
@@ -98,7 +124,10 @@ class CommentService:
             return Comment.objects.get(id=comment_id)
         except ObjectDoesNotExist:
             return None
-
+    @staticmethod
+    def get_comments_by_task(task_id):
+        task = TaskService.get_task_by_id(task_id)
+        return Comment.objects.filter(task=task)
     @staticmethod
     def get_all_comments():
         return Comment.objects.all()

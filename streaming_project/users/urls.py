@@ -9,6 +9,7 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('users/', views.UserListView.as_view(), name='users'),
+    path('users/<int:pk>/', views.UserDetailView.as_view(), name='users'),
     # Departments URLs
     path('departments/', views.DepartmentsListAPIView.as_view(), name='departments-list'),
     path('departments/<int:pk>/', views.DepartmentsDetailAPIView.as_view(), name='departments-detail'),

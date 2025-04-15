@@ -15,6 +15,7 @@ export const fetchStatuses = async (): Promise<Status[]> => {
 export const updateTaskStatus = async (taskId: number, statusId: number): Promise<void> => {
   await api.patch(`/taskmanager/task/${taskId}/`, { status: statusId });
 };
+
 export const createTask = async (taskData: {
   name: string;
   description: string;
@@ -27,10 +28,42 @@ export const createTask = async (taskData: {
   description: string;
   comments?: Comment[];
 }> => {
- await api.post('/taskmanager/task/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(taskData)
-  });
+  // Переименовываем поля перед отправкой
+  const payload = {
+    name: taskData.name,
+    description: taskData.description,
+    status: taskData.status_detail,
+    setter: taskData.setter_detail,
+    executor: taskData.executor_detail,
+  };
 
+  await api.post('/taskmanager/task/', payload, {
+    headers: {
+      'Content-Type': 'application/json', // Убедитесь, что заголовок установлен
+    },
+  });
+};
+export const updateTask = async (
+  taskId: number,
+  taskData: {
+    name: string;
+    description: string;
+    status_detail: number;
+    setter_detail: number;
+    executor_detail: number | null;
+  }
+): Promise<void> => {
+  const payload = {
+    name: taskData.name,
+    description: taskData.description,
+    status: taskData.status_detail,
+    setter: taskData.setter_detail,
+    executor: taskData.executor_detail,
+  };
+
+  await api.put(`/taskmanager/task/${taskId}/`, payload, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };

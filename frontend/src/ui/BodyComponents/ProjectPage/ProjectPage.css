@@ -1,0 +1,49 @@
+.projects-page {
+  padding: 1rem;
+}
+
+.create-project-button {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.project-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.project-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.project-actions button {
+  padding: 0.3rem 0.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.project-actions button:first-child {
+  background-color: #2196f3;
+  color: white;
+}
+
+.project-actions button:last-child {
+  background-color: #f44336;
+  color: white;
+}

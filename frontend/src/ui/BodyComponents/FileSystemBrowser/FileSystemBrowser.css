@@ -1,0 +1,144 @@
+/* FileSystemBrowser.css */
+
+.file-system-browser {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.breadcrumbs button {
+  background-color: #e0e0e0;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: background-color 0.2s;
+}
+
+.breadcrumbs button:hover:not(:disabled) {
+  background-color: #d0d0d0;
+}
+
+.breadcrumbs button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.breadcrumbs span {
+  color: #555;
+  font-size: 14px;
+}
+
+.breadcrumbs span:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.folders-list, .files-list {
+  margin-bottom: 25px;
+}
+
+.folders-list h3, .files-list h3 {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.folders-list ul, .files-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.folders-list li, .files-list li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+.folders-list li:last-child, .files-list li:last-child {
+  border-bottom: none;
+}
+
+.folders-list li:hover {
+  background-color: #f0f8ff;
+  cursor: pointer;
+}
+
+.files-list a {
+  color: #0066cc;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.files-list a:hover {
+  text-decoration: underline;
+}
+
+.files-list li:hover {
+  background-color: #f9f9f9;
+}
+
+/* Иконки */
+.folders-list li::before {
+  content: '📁';
+  margin-right: 8px;
+}
+
+.files-list a::before {
+  content: '📄';
+}
+
+/* Состояния загрузки и ошибки */
+.loading-message, .error-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.loading-message {
+  color: #666;
+}
+
+.error-message {
+  color: #d32f2f;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+  .file-system-browser {
+    padding: 15px;
+  }
+
+  .breadcrumbs {
+    padding: 8px 10px;
+  }
+
+  .folders-list li, .files-list li {
+    padding: 8px 10px;
+  }
+}

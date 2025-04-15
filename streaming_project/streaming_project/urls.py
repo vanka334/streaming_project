@@ -15,9 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls.static import static
+
 from django.urls import path, include, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
+
+from . import settings
 from .swagger import urlpatterns as swagger_urls
 
 
@@ -29,5 +33,6 @@ urlpatterns = [
     path('api/v1/files/', include('file_system.urls')),
     path('api/v1/taskmanager/', include('taskmanager.urls')),
     path('api/', include(swagger_urls)),
+    path('metrics/', include('django_prometheus.urls')),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

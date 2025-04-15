@@ -10,6 +10,11 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import LoginPage from "../pages/LoginPage/LoginPage.tsx";
 import {MainPage} from "../pages/MainPage/MainPage.tsx";
 import {getAccessToken} from "../api/interceptors.ts";
+import FileSystem from "../ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.tsx";
+import FileSystemBrowser from "../ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.tsx";
+import Tasks from "../ui/BodyComponents/Tasks/Tasks.tsx";
+import UserProfilePage from "../ui/BodyComponents/UserProfilePage/UserProfilePage.tsx";
+import ProjectsPage from "../ui/BodyComponents/ProjectPage/ProjectPage.tsx";
 
 function App() {
   const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
@@ -37,7 +42,13 @@ function App() {
                 <MainPage />
               </ProtectedRoute>
             }
-          />
+          >
+        <Route index element={<Navigate to="/tasks" />} />
+        <Route path="tasks" element={<Tasks />} />
+        <Route path="filesystem" element={<FileSystemBrowser />} />
+              <Route path="user/:userId" element={<UserProfilePage />} />
+               <Route path="projects" element={<ProjectsPage />} />
+</Route>
           {/* Другие защищённые маршруты */}
         </Routes>
 

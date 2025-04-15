@@ -4,7 +4,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b2ef2ba-61b6-483a-9554-52570e3666f8" name="Changes" comment="" />
+    <list default="true" id="6b2ef2ba-61b6-483a-9554-52570e3666f8" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/ProjectApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/commentApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/AppRoutes.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/ProjectPage/ProjectModal/ProjectModal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/ProjectPage/ProjectModal/ProjectModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/ProjectPage/ProjectPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/ProjectPage/ProjectPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/AddTaskModal/AddTaskModal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/EditTaskModal/EditTaskModal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/EditTaskModal/EditTaskModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/TaskComment/TaskComment.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/TaskComment/TaskComment.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/UserProfilePage/UserProfilePage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/UserProfilePage/UserProfilePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/getfiles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/streaming_project/export_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/Models/Folder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/Models/Folder.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/Models/Project.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/Models/Project.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/fetchs/taskApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/taskApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/fetchs/userApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/userApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/interceptors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/interceptors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MainPage/MainPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MainPage/MainPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/TaskDetail/TaskDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/FileSystemApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/TaskDetail/TaskDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/AddTaskModal/AddTaskModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/Tasks.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/Tasks.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/Tasks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/Tasks.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/ui/MainComponents/LeftMenu/LeftMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/MainComponents/LeftMenu/LeftMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/file_system/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/file_system/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/file_system/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/file_system/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/file_system/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/file_system/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/streaming_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/streaming_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/streaming_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/streaming_project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/structure.txt" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/structure.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/taskmanager/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/taskmanager/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/taskmanager/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/taskmanager/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/taskmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/taskmanager/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/taskmanager/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/taskmanager/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/users/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,10 +67,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Python Script" />
+        <option value="Dockerfile" />
         <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -52,7 +103,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vanya/PycharmProjects/streamin_proj/frontend/eslint.config.js&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vanya/PycharmProjects/streamin_proj&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
@@ -62,18 +113,18 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Shelf.Project.Settings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Vanya\\PycharmProjects\\streamin_proj\\frontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\frontend\src\ui\BodyComponents\Tasks" />
-      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\frontend\src\ui\BodyComponents" />
       <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj" />
-      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\streaming_project\streaming_project" />
-      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\streaming_project\users" />
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\frontend\src\ui\BodyComponents\Tasks\AddTaskModal" />
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\frontend\src\ui\BodyComponents\Tasks" />
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\frontend\src\api\types" />
+      <recent name="C:\Users\Vanya\PycharmProjects\streamin_proj\frontend\src\ui\BodyComponents\Tasks\styles" />
     </key>
   </component>
   <component name="RunManager">
@@ -195,7 +246,33 @@
       <workItem from="1743884100688" duration="11449000" />
       <workItem from="1743938617458" duration="1084000" />
       <workItem from="1743942258150" duration="12325000" />
+      <workItem from="1743971035164" duration="1952000" />
+      <workItem from="1743973326188" duration="2253000" />
+      <workItem from="1743985118709" duration="18000" />
+      <workItem from="1744042512800" duration="723000" />
+      <workItem from="1744047623204" duration="306000" />
+      <workItem from="1744098276475" duration="5006000" />
+      <workItem from="1744114896498" duration="25870000" />
+      <workItem from="1744156813459" duration="1105000" />
+      <workItem from="1744186357793" duration="49541000" />
+      <workItem from="1744300500757" duration="9468000" />
+      <workItem from="1744334028947" duration="157000" />
+      <workItem from="1744335730814" duration="1201000" />
+      <workItem from="1744336963403" duration="6148000" />
+      <workItem from="1744360603369" duration="4135000" />
+      <workItem from="1744550683951" duration="6000" />
+      <workItem from="1744615238163" duration="860000" />
+      <workItem from="1744749506105" duration="1330000" />
     </task>
+    <task id="LOCAL-00001" summary="test">
+      <option name="closed" value="true" />
+      <created>1743971149604</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743971149604</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,5 +282,7 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>

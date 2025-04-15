@@ -40,6 +40,15 @@ class UserListView(APIView):
       users = UserService.get_all_users()
       serializer = UserSerializer(users, many=True)
       return Response(serializer.data)
+class UserDetailView(APIView):
+   permission_classes = [IsAuthenticated]
+
+   @swagger_auto_schema(tags=["User"])
+   def get(self, request, pk):
+      users = UserService.get_user_by_id(pk)
+      serializer = UserSerializer(users)
+      return Response(serializer.data)
+
 
 class DepartmentsListAPIView(APIView):
    permission_classes = [IsAuthenticated]

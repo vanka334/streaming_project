@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -8,14 +10,31 @@ from file_system.models import Folder
 from file_system.serializers import FileSerializer, FolderSerializer
 import file_system.services as services
 
+
+
 # Create your views here.
 class FileSystemList(APIView):
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                'directory',  # имя параметра
+                openapi.IN_QUERY,  # из query-параметров
+                description="ID директории, для которой нужно получить структуру",
+                type=openapi.TYPE_INTEGER,  # или TYPE_STRING, если ID строковый
+                required=True
+            )
+        ]
+    )
     def get(self, request):
+
         user = request.user
+        print(user)
         departments = user.departments.all()
-        directory_id = request.data.get('directory')
+        print(departments)
+        directory_id = request.query_params.get('directory')
+        print(directory_id)
         folders = []
         files = []
         if len(departments) > 1:
@@ -24,7 +43,9 @@ class FileSystemList(APIView):
                 if department.isManagement:
                     struct = services.FileSystemService.get_struct_by_directory(department, directory_id)
                     folders.extend(struct['folders'])
+                    print(folders)
                     files.extend(struct['files'])
+                    print(files)
         else:
             department = departments[0]
             struct = services.FileSystemService.get_struct_by_directory(department, directory_id)
@@ -35,6 +56,7 @@ class FileSystemList(APIView):
             'folders': FolderSerializer(folders, many=True).data,
             'files': FileSerializer(files, many=True).data,
         }
+        print(response)
         return Response(response)
     def post(self, request):
         serializer = FileSerializer(data=request.data)

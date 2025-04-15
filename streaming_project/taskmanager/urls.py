@@ -14,4 +14,6 @@ urlpatterns = [
     # Comment URLs
     path('comment/', views.CommentListAPIView.as_view(), name='comment-list'),
     path('comment/<int:pk>/', views.CommentDetailAPIView.as_view(), name='comment-detail'),
+    path('comment_by_task/', views.get_comment_by_task, name='comment-by-task'),
+
 ]
