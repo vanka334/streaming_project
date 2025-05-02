@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Count
 from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -84,6 +85,13 @@ class UserService:
             return User.objects.get(pk=user_id)
         except ObjectDoesNotExist:
             return None
+
+    @staticmethod
+    def checkUser(user_id):
+        return Department.objects.filter(
+            users__id=user_id,
+            isManagement=True
+        ).exists()
     @staticmethod
     def get_user_by_email(self, email):
         return User.objects.get(email=email)
@@ -101,9 +109,36 @@ class ProjectService:
     @staticmethod
     def get_project_by_id(project_id):
         try:
-            return Project.objects.prefetch_related('users').get(pk=project_id)
+            project = Project.objects.prefetch_related('users', 'tasks__status').get(pk=project_id)
+
+            tasks = project.tasks.all()
+            total_tasks = tasks.count()
+            print(total_tasks)
+            completed_tasks = tasks.filter(isDone=True).count()
+            print(completed_tasks)
+            overdue_tasks = tasks.filter(is_overdue=True).count()
+            print(overdue_tasks)
+
+            status_distribution = (
+                tasks.values('status__name')
+                .annotate(count=Count('id'))
+                .order_by()
+            )
+
+            statistics = {
+                "total_tasks": total_tasks,
+                "completed_tasks": completed_tasks,
+                "overdue_tasks": overdue_tasks,
+                "kpi": round((completed_tasks / total_tasks) * 100, 2) if total_tasks else 0,
+                "status_distribution": {
+                    item["status__name"]: item["count"] for item in status_distribution
+                }
+            }
+
+            return project, statistics
+
         except Project.DoesNotExist:
-            return None
+            return None, None
 
     @staticmethod
     def create_project(name, description, users):

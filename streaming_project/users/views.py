@@ -1,5 +1,6 @@
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
+from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -133,12 +134,15 @@ class ProjectListAPIView(APIView):
 class ProjectDetailAPIView(APIView):
    @swagger_auto_schema(tags=["Project"])
    def get(self, request, pk):
-      project = ProjectService.get_project_by_id(pk)
+      project, statistics = ProjectService.get_project_by_id(pk)
       if not project:
-         return Response({"detail": "Not found."},
-                         status=status.HTTP_404_NOT_FOUND)
+         return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+
       serializer = ProjectSerializer(project)
-      return Response(serializer.data)
+      data = serializer.data
+      data["statistics"] = statistics
+
+      return Response(data)
 
    @swagger_auto_schema(tags=["Project"])
    def put(self, request, pk):
@@ -174,7 +178,11 @@ class ProjectDetailAPIView(APIView):
       return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
+@api_view(['GET'])
+def checkUser(request):
+   user_id = request.query_params.get('user_id')
+   response = UserService.checkUser(user_id=user_id)
+   return Response({'result':response}, status=status.HTTP_200_OK)
 
 
 

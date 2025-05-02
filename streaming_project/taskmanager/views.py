@@ -161,3 +161,13 @@ def get_comment_by_task(request):
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
     return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+@api_view(["POST"])
+def commit_task(request):
+    task_id = request.data["task_id"]
+    TaskService.commit_task(task_id)
+    return Response({"detail": "Commit"}, status=status.HTTP_200_OK)
+@api_view(["POST"])
+def reject_task(request):
+    task_id = request.data["task_id"]
+    TaskService.reject_task(task_id)
+    return Response({"detail": "Commit"}, status=status.HTTP_200_OK)

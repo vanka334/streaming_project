@@ -10,6 +10,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('users/', views.UserListView.as_view(), name='users'),
     path('users/<int:pk>/', views.UserDetailView.as_view(), name='users'),
+    path('users/isManager/', views.checkUser, name='isManager'),
     # Departments URLs
     path('departments/', views.DepartmentsListAPIView.as_view(), name='departments-list'),
     path('departments/<int:pk>/', views.DepartmentsDetailAPIView.as_view(), name='departments-detail'),

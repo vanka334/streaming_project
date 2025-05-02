@@ -9,4 +9,9 @@ export interface Task {
   setter_detail: User | number;
   executor_detail: User | number | null;
   comments?: Comment[];
+  isDone?: boolean
+  is_overdue?: boolean
+  deadline: string
+  created_at: string
+
 }

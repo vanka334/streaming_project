@@ -9,6 +9,9 @@ import {fetchUsers} from "../../../api/fetchs/userApi.ts";
 import {AddTaskModal} from "./AddTaskModal/AddTaskModal.tsx";
 import {EditTaskModal} from "./EditTaskModal/EditTaskModal.tsx";
 import {Link} from "react-router-dom";
+import {StatusColumn} from "./StatusColumn/StatusColumn.tsx";
+import {Project} from "../../../api/Models/Project.ts";
+import {fetchProjects} from "../../../api/fetchs/ProjectApi.ts";
 
 // Вспомогательная функция для переупорядочивания списка
 const reorder = (list: Task[], startIndex: number, endIndex: number) => {
@@ -39,16 +42,19 @@ export default function Tasks() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filter, setFilter] = useState<'all' | 'doing' | 'assigned'>('all');
   const currentUserId = localStorage.getItem('user_id');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProjectId, setSelectedProjectId] = useState<number | 'all'>('all');
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [tasksData, statusesData, usersData] = await Promise.all([
+        const [tasksData, statusesData, usersData, projectsData] = await Promise.all([
           fetchTasks(),
           fetchStatuses(),
-          fetchUsers()
+          fetchUsers(),
+          fetchProjects()
         ]);
-
+        setProjects(projectsData);
         // Создаем кэш пользователей
         const cache: Record<number, User> = {};
         tasksData.forEach(task => {
@@ -115,27 +121,36 @@ export default function Tasks() {
   };
 
   const filterTasks = (tasks: Record<number, Task[]>): Record<number, Task[]> => {
-    if (filter === 'all') return tasks;
+  const filtered: Record<number, Task[]> = {};
 
-    const filtered: Record<number, Task[]> = {};
+  for (const statusId in tasks) {
+    filtered[+statusId] = tasks[statusId].filter(task => {
+      const projectId = typeof task.project === 'number'
+        ? task.project
+        : task.project?.id;
 
-    for (const statusId in tasks) {
-      filtered[statusId] = tasks[statusId].filter(task => {
-        if (filter === 'doing') {
-          return typeof task.executor_detail === 'number'
-            ? task.executor_detail === currentUserId
-            : task.executor_detail?.id === currentUserId;
-        } else if (filter === 'assigned') {
-          return typeof task.setter_detail === 'number'
-            ? task.setter_detail === currentUserId
-            : task.setter_detail?.id === currentUserId;
-        }
-        return true;
-      });
-    }
+      if (selectedProjectId !== 'all' && projectId !== selectedProjectId) {
+        return false;
+      }
 
-    return filtered;
-  };
+      if (filter === 'doing') {
+        return typeof task.executor_detail === 'number'
+          ? task.executor_detail === parseInt(currentUserId!)
+          : task.executor_detail?.id === parseInt(currentUserId!);
+      }
+
+      if (filter === 'assigned') {
+        return typeof task.setter_detail === 'number'
+          ? task.setter_detail === parseInt(currentUserId!)
+          : task.setter_detail?.id === parseInt(currentUserId!);
+      }
+
+      return true;
+    });
+  }
+
+  return filtered;
+};
 
   const onDragEnd = async (result: any) => {
     const { source, destination } = result;
@@ -253,7 +268,7 @@ export default function Tasks() {
   if (loading) return <div className="loading">Загрузка...</div>;
   if (error) return <div className="error">{error}</div>;
 
-  const filteredTasks = filterTasks(tasksByStatus);
+  const filteredTasks =  filterTasks(tasksByStatus);
 
   return (
       <div className="task-board">
@@ -262,47 +277,52 @@ export default function Tasks() {
           <button onClick={() => setIsModalOpen(true)} className="add-task-button">
             + Добавить задачу
           </button>
-          {/* Фильтры и прочее */}
+          <select
+              value={selectedProjectId}
+              onChange={e =>
+                  setSelectedProjectId(e.target.value === 'all' ? 'all' : parseInt(e.target.value))
+
+              }
+          >
+            <option value="all">Все проекты</option>
+            {projects.map(project => (
+                <option key={project.id} value={project.id}>
+                  {project.name}
+                </option>
+            ))}
+          </select>
+          <div className="task-filters">
+            <button
+                className={`filter-button ${filter === 'all' ? 'active' : ''}`}
+                onClick={() => setFilter('all')}
+            >
+              Все задачи
+            </button>
+            <button
+                className={`filter-button ${filter === 'doing' ? 'active' : ''}`}
+                onClick={() => setFilter('doing')}
+            >
+              Делаю
+            </button>
+            <button
+                className={`filter-button ${filter === 'assigned' ? 'active' : ''}`}
+                onClick={() => setFilter('assigned')}
+            >
+              Поручил
+            </button>
+          </div>
+
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="status-columns">
-            {statuses.map(status_detail => (
-                <Droppable key={status_detail.id} droppableId={String(status_detail.id)}>
-                  {(provided, snapshot) => (
-                      <div
-                          ref={provided.innerRef}
-                          {...provided.droppableProps}
-                          className={`status-column ${snapshot.isDraggingOver ? 'dragging-over' : ''}`}
-                      >
-                        <h2 className="status-header">{status_detail.name}</h2>
-                        <div className="tasks-container">
-                          {filteredTasks[status_detail.id]?.map((task, index) => (
-                              <Draggable key={`task-${task.id}`} draggableId={`task-${task.id}`} index={index}>
-                                {(provided, snapshot) => (
-                                    <div
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        className={`task-card ${snapshot.isDragging ? 'dragging' : ''}`}
-                                    >
-                                      <h3 onClick={() => setSelectedTask(task)}>{task.name}</h3>
-                                      <p className="task-description">{task.description}</p>
-                                      <div className="task-meta">
-                                        <span>Создатель: {getUserDisplay(task.setter_detail)}</span>
-                                        <span>Исполнитель: {getUserDisplay(task.executor_detail)}</span>
-                                        {task.comments && task.comments.length > 0 && (
-                                            <span>Комментарии: {task.comments.length}</span>
-                                        )}
-                                      </div>
-                                    </div>
-                                )}
-                              </Draggable>
-                          ))}
-                          {provided.placeholder}
-                        </div>
-                      </div>
-                  )}
-                </Droppable>
+            {statuses.map(status => (
+                <StatusColumn
+                    key={status.id}
+                    status={status}
+                    tasksByStatus={filteredTasks}
+                    getUserDisplay={getUserDisplay}
+                    onTaskClick={setSelectedTask}
+                />
             ))}
           </div>
         </DragDropContext>
@@ -311,7 +331,8 @@ export default function Tasks() {
             <AddTaskModal
                 statuses={statuses}
                 users={users}
-                currentUserId={currentUserId}
+                projects={projects}
+                currentUserId={parseInt(currentUserId)}
                 onClose={() => setIsModalOpen(false)}
                 onSubmit={handleAddTask}
             />
@@ -321,6 +342,8 @@ export default function Tasks() {
                 key={selectedTask.id}
                 task={selectedTask}
                 statuses={statuses}
+                projects={projects}
+                currentUserId={parseInt(currentUserId)}
                 users={users}
                 onClose={() => setSelectedTask(null)}
                 onSubmit={handleUpdateTask}

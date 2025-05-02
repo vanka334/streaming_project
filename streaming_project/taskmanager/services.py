@@ -8,6 +8,7 @@ class StatusService:
     def create_status(name, is_default=False):
         return Status.objects.create(name=name, isDefault=is_default)
 
+
     @staticmethod
     def get_status_by_id(status_id):
         try:
@@ -17,7 +18,13 @@ class StatusService:
 
     @staticmethod
     def get_all_statuses():
-        return Status.objects.all()
+        return sorted(
+            Status.objects.all(),
+            key=lambda s: (
+                0 if s.isDefault else (2 if s.isFinal else 1),
+                s.order
+            )
+        )
 
     @staticmethod
     def update_status(status_id, name=None, is_default=None):
@@ -36,6 +43,9 @@ class StatusService:
         if status:
             status.delete()
         return status
+    @staticmethod
+    def get_default_status():
+        return Status.objects.filter(isDefault=True).first()
 
 class TaskService:
     @staticmethod
@@ -96,6 +106,7 @@ class TaskService:
             if description is not None:
                 task.description = description
             if status is not None:
+                task.isDone = False
                 task.status = status
             if executor is not None:
                 task.executor = executor
@@ -108,7 +119,17 @@ class TaskService:
         if task:
             task.delete()
         return task
-
+    @staticmethod
+    def commit_task( task_id):
+        task = TaskService.get_task_by_id(task_id)
+        task.isDone = True
+        task.save()
+    @staticmethod
+    def reject_task(task_id):
+        task = TaskService.get_task_by_id(task_id)
+        default_status = StatusService.get_default_status()
+        task.status = default_status
+        task.save()
 class CommentService:
     @staticmethod
     def create_comment(task, author, text):

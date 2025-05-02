@@ -10,6 +10,8 @@ urlpatterns = [
     # Task URLs
     path('task/', views.TaskListAPIView.as_view(), name='task-list'),
     path('task/<int:pk>/', views.TaskDetailAPIView.as_view(), name='task-detail'),
+    path('task/commit/', views.commit_task, name='task-commit'),
+    path('task/reject/', views.reject_task, name='task-commit'),
 
     # Comment URLs
     path('comment/', views.CommentListAPIView.as_view(), name='comment-list'),

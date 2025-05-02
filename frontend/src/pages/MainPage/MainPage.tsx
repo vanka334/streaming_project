@@ -18,6 +18,7 @@ export const MainPage = () => {
       const user_id = localStorage.getItem('user_id');
       if (user_id) {
         const user = await fetchUserData(parseInt(user_id));
+
         console.log('Получен пользователь:', user);
 
         // Сохраняем данные пользователя в localStorage

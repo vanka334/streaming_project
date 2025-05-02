@@ -10,6 +10,11 @@ from file_system.models import Folder
 from file_system.serializers import FileSerializer, FolderSerializer
 import file_system.services as services
 
+from file_system.models import File
+
+from file_system.services import FileService
+
+from file_system.serializers import FolderCreateSerializer
 
 
 # Create your views here.
@@ -37,16 +42,17 @@ class FileSystemList(APIView):
         print(directory_id)
         folders = []
         files = []
+        print(f'departments {len(departments)}')
         if len(departments) > 1:
-
+            print("if")
             for department in departments:
                 if department.isManagement:
                     struct = services.FileSystemService.get_struct_by_directory(department, directory_id)
                     folders.extend(struct['folders'])
-                    print(folders)
+
                     files.extend(struct['files'])
-                    print(files)
         else:
+            print("else")
             department = departments[0]
             struct = services.FileSystemService.get_struct_by_directory(department, directory_id)
             folders = struct['folders']
@@ -74,11 +80,14 @@ class FileSystemList(APIView):
 
 class FolderAPIView(APIView):
     def post(self, request):
-        serializer = FolderSerializer(data=request.data)
+        print(request.data)
+        print(type(request.data['parent']))
+        serializer = FolderCreateSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         try:
-                folder = services.FileSystemService.create_folder(serializer)
+                folder = services.FileSystemService.create_folder(serializer.validated_data)
+
                 return Response(FolderSerializer(folder).data, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -90,6 +99,30 @@ class FolderAPIView(APIView):
                 return Response({'status': 'Success'}, status=status.HTTP_200_OK)
             else: return Response({'status': 'Error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else: return Response({'status': 'Error'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class FileAPIView(APIView):
+    def post(self, request):
+        try:
+            uploaded_file = FileService.create_file(
+                file=request.FILES.get('file'),
+                folder_id=request.data.get('folder'),
+                user=request.user,
+                name=request.data.get('name')
+            )
+            return Response(FileSerializer(uploaded_file).data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request):
+        file_Id = request.query_params.get('file_Id')
+        if not file_Id:
+            return Response({'error': 'file_Id parameter is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            isDelete = FileService.delete_file(file_Id)
+            return Response(isDelete, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 

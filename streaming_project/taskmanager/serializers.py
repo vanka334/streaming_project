@@ -42,7 +42,7 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = [
-            'id', 'name', 'description',
+            'id', 'name', 'description','isDone','deadline', 'date_commit','created_at','project','is_overdue','isDone',
             'status', 'setter', 'executor',  # Для записи (только ID)
             'status_detail', 'setter_detail', 'executor_detail'  # Для чтения (полные данные)
         ]

@@ -15,6 +15,7 @@ import FileSystemBrowser from "../ui/BodyComponents/FileSystemBrowser/FileSystem
 import Tasks from "../ui/BodyComponents/Tasks/Tasks.tsx";
 import UserProfilePage from "../ui/BodyComponents/UserProfilePage/UserProfilePage.tsx";
 import ProjectsPage from "../ui/BodyComponents/ProjectPage/ProjectPage.tsx";
+import ProjectDashboard from "../ui/BodyComponents/ProjectPage/ProjectDashboard/ProjectDashboard.tsx";
 
 function App() {
   const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
@@ -48,6 +49,7 @@ function App() {
         <Route path="filesystem" element={<FileSystemBrowser />} />
               <Route path="user/:userId" element={<UserProfilePage />} />
                <Route path="projects" element={<ProjectsPage />} />
+              <Route path="projects/:projectId" element={<ProjectDashboard />} />
 </Route>
           {/* Другие защищённые маршруты */}
         </Routes>

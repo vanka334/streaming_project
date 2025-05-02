@@ -67,3 +67,9 @@ export const updateTask = async (
     },
   });
 };
+export const commitTask = async(taskId:number): Promise<void> =>{
+  await api.post('/taskmanager/task/commit/', {"task_id" : taskId})
+}
+export const rejectTask = async(taskId:number): Promise<void> =>{
+  await api.post('/taskmanager/task/reject/', {"task_id" : taskId})
+}

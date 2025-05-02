@@ -55,6 +55,15 @@ a{
   border-left: 4px solid #1976d2;
 }
 
+.task-card-overdue {
+  background-color: #ffd1d1;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border-left: 4px solid #ff0000;
+}
+
 .task-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -126,4 +135,9 @@ a{
   background: #1890ff;
   color: white;
   border-color: #1890ff;
+}
+.task-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
 }

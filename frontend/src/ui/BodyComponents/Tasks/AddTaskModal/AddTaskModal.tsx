@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import {Status} from "../../../../api/Models/Status.ts";
-import {User} from "../../../../api/Models/User.ts";
-
+import { Status } from "../../../../api/Models/Status.ts";
+import { User } from "../../../../api/Models/User.ts";
+import { Project } from "../../../../api/Models/Project.ts";
 
 interface AddTaskModalProps {
   statuses: Status[];
   users: User[];
-  currentUser: User;
+  currentUserId: number;
+  projects: Project[];
   onClose: () => void;
   onSubmit: (taskData: {
     name: string;
@@ -14,13 +15,15 @@ interface AddTaskModalProps {
     status_detail: number;
     setter_detail: number;
     executor_detail: number | null;
+    project: number;
   }) => void;
 }
 
 export const AddTaskModal: React.FC<AddTaskModalProps> = ({
   statuses,
   users,
-  currentUser,
+  currentUserId,
+  projects,
   onClose,
   onSubmit
 }) => {
@@ -28,6 +31,7 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({
   const [description, setDescription] = useState('');
   const [selectedStatus, setSelectedStatus] = useState<Status>(statuses[0]);
   const [selectedExecutor, setSelectedExecutor] = useState<User | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project>(projects[0]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,8 +40,9 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({
       name,
       description,
       status_detail: selectedStatus.id,
-      setter_detail: 1,
-      executor_detail: selectedExecutor?.id || null
+      setter_detail: currentUserId,
+      executor_detail: selectedExecutor?.id || null,
+      project: selectedProject.id
     });
   };
 
@@ -64,6 +69,24 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
             />
+          </div>
+
+          <div className="form-group">
+            <label>Проект:</label>
+            <select
+              value={selectedProject.id}
+              onChange={(e) => {
+                const project = projects.find(p => p.id === Number(e.target.value));
+                if (project) setSelectedProject(project);
+              }}
+              required
+            >
+              {projects.map(project => (
+                <option key={project.id} value={project.id}>
+                  {project.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group">

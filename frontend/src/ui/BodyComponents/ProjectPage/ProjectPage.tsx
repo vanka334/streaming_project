@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, lazy} from 'react';
 import { Project } from '../../../api/Models/Project';
 import { fetchProjects, deleteProject } from '../../../api/fetchs/ProjectApi';
 import './ProjectPage.css';
 import {ProjectModal} from "./ProjectModal/ProjectModal.tsx";
+import {fetchIsManager} from "../../../api/fetchs/userApi.ts";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -10,7 +11,8 @@ export default function ProjectsPage() {
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
-
+  const [isManager, setIsManager] = useState<boolean>(false);
+  const currentUserId = localStorage.getItem('user_id');
   const loadProjects = async () => {
     try {
       const data = await fetchProjects();
@@ -24,8 +26,13 @@ export default function ProjectsPage() {
   };
 
   useEffect(() => {
+const checkManagerStatus = async () => {
+  const result = await fetchIsManager(parseInt(currentUserId));
+  setIsManager(result['result']); // предполагаем, что API возвращает boolean
+}
     loadProjects();
-  }, []);
+checkManagerStatus();
+  }, [currentUserId]);
 
   const openCreateModal = () => {
     setEditingProject(null);
@@ -65,29 +72,32 @@ export default function ProjectsPage() {
   return (
     <div className="projects-page">
       <h1>Проекты</h1>
+      {isManager &&(
       <button onClick={openCreateModal} className="create-project-button">
         Создать проект
-      </button>
+      </button>)}
       <div className="projects-list">
         {projects.length === 0 ? (
           <p>Нет проектов</p>
         ) : (
           projects.map(project => (
             <div key={project.id} className="project-card">
-              <h2>{project.name}</h2>
+              <a href={`/projects/${project.id}`}><h2>{project.name}</h2></a>
               <p>{project.description}</p>
               {project.users_detail && project.users_detail.length > 0 && (
                 <div className="project-users">
+
                   <strong>Пользователи:</strong>{' '}
                   {project.users_detail.map(user => user.username).join(', ')}
                 </div>
               )}
+              {isManager &&(
               <div className="project-actions">
                 <button onClick={() => openEditModal(project)}>Редактировать</button>
                 <button onClick={() => project.id && handleDeleteProject(project.id)}>
                   Удалить
                 </button>
-              </div>
+              </div>)}
             </div>
           ))
         )}

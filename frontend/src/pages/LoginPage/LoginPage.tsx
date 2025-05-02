@@ -25,8 +25,16 @@ export default function  LoginPage(){
     setError('');
 
     try {
-      await login({ username, password });
-      navigate('/');
+
+       // Проверяем, если логин и пароль равны "admin"
+      if (username === 'admin' && password === 'admin') {
+        // Перенаправляем на localhost:8000/admin
+        window.location.href = 'http://localhost:8000/admin';
+      } else {
+        await login({ username, password });
+        // Иначе перенаправляем на обычную страницу
+        navigate('/');
+      }
     } catch (err) {
       setError('Неверный username или пароль');
       console.error(err);

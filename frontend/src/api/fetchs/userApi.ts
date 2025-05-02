@@ -13,3 +13,7 @@ export const fetchUserData = async (userId: number): Promise<User> => {
   const response = await api.get(`/users/users/${userId}/`);
   return response.data;
 };
+export const fetchIsManager= async (userId: number) => {
+  const response = await api.get(`/users/users/isManager/?user_id=${userId}`);
+  return response.data;
+};

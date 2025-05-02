@@ -5,7 +5,7 @@ from django.apps import apps
 from django.db import models
 
 from django.contrib.auth import get_user_model
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 
 from users.models import Department
@@ -86,3 +86,8 @@ class File(models.Model):
         verbose_name_plural = 'Файлы'
     def __str__(self):
         return self.name
+@receiver(post_delete, sender=File)
+def delete_file_on_model_delete(sender, instance, **kwargs):
+    if instance.file:
+        if os.path.isfile(instance.file.path):
+            instance.file.delete(save=False)
