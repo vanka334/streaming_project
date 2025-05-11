@@ -1,7 +1,7 @@
 import {Folder} from "./Folder.ts";
 import {User} from "./User.ts";
 
-export interface File {
+export interface FileModel {
   id: number;
   folder: number | Folder;
   file: string; // URL to the file

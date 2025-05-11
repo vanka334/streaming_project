@@ -61,8 +61,8 @@ export default function Tasks() {
           if (typeof task.setter_detail !== 'number' && !cache[task.setter_detail.id]) {
             cache[task.setter_detail.id] = task.setter_detail;
           }
-          if (task.executor && typeof task.executor !== 'number' && !cache[task.executor.id]) {
-            cache[task.executor.id] = task.executor;
+          if (task.executor_detail && typeof task.executor_detail !== 'number' && !cache[task.executor_detail.id]) {
+            cache[task.executor_detail.id] = task.executor_detail;
           }
         });
 
@@ -195,6 +195,7 @@ export default function Tasks() {
     status_detail: number;
     setter_detail: number;
     executor_detail: number | null;
+    project:number;
   }) => {
     try {
       // Отправляем на сервер (только ID)
@@ -235,7 +236,10 @@ export default function Tasks() {
         setter_detail: typeof updatedTask.setter_detail === 'number'
           ? updatedTask.setter_detail
           : updatedTask.setter_detail.id,
-        executor_detail: updatedTask.executor_detail.id
+        executor_detail: typeof updatedTask.executor_detail === 'number'
+          ? updatedTask.executor_detail
+          : updatedTask.executor_detail.id,
+        deadline: updatedTask.deadline
       };
 
       await updateTask(updatedTask.id, apiData);

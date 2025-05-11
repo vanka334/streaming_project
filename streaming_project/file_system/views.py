@@ -35,34 +35,38 @@ class FileSystemList(APIView):
     def get(self, request):
 
         user = request.user
-        print(user)
+
         departments = user.departments.all()
-        print(departments)
+
         directory_id = request.query_params.get('directory')
-        print(directory_id)
+
         folders = []
         files = []
-        print(f'departments {len(departments)}')
+        core_folder_id = 1
+
         if len(departments) > 1:
-            print("if")
+
             for department in departments:
                 if department.isManagement:
                     struct = services.FileSystemService.get_struct_by_directory(department, directory_id)
                     folders.extend(struct['folders'])
 
                     files.extend(struct['files'])
+                    core_folder_id = struct['core_folder_id']
         else:
-            print("else")
-            department = departments[0]
+
+            department = departments.first()
             struct = services.FileSystemService.get_struct_by_directory(department, directory_id)
             folders = struct['folders']
             files = struct['files']
+            core_folder_id = struct['core_folder_id']
 
         response = {
+            'core_folder_id':core_folder_id,
             'folders': FolderSerializer(folders, many=True).data,
             'files': FileSerializer(files, many=True).data,
         }
-        print(response)
+
         return Response(response)
     def post(self, request):
         serializer = FileSerializer(data=request.data)

@@ -5,8 +5,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import UserSerializer
-from .services import RegService, DepartmentService, ProjectService, UserService
+from .serializers import UserSerializer, UserCallSerializer, RegisterSerializer
+from .services import RegService, DepartmentService, ProjectService, UserService, PasswordResetService
 
 from users.serializers import UserRegistrationSerializer, DepartmentSerializer, ProjectSerializer
 
@@ -16,7 +16,7 @@ class AuthApiView(APIView):
    permission_classes = [AllowAny]
 
    def post(self, request):
-      serializer = UserRegistrationSerializer(data=request.data)
+      serializer = RegisterSerializer(data=request.data)
       if not serializer.is_valid():
          errors = {}
          for field, error_details in serializer.errors.items():
@@ -25,9 +25,13 @@ class AuthApiView(APIView):
 
       try:
          reg_info = RegService.register(
-            serializer.validated_data['username'],
-            serializer.validated_data['email'],
-            serializer.validated_data['password']
+            username=serializer.validated_data['username'],
+            email=serializer.validated_data['email'],
+            password=serializer.validated_data['password'],
+            name=serializer.validated_data['name'],
+            surname=serializer.validated_data['surname'],
+            patronymic=serializer.validated_data.get('patronymic', ''),
+            token=serializer.validated_data['token']
          )
          return Response(reg_info, status=status.HTTP_201_CREATED)
       except Exception as e:
@@ -49,6 +53,22 @@ class UserDetailView(APIView):
       users = UserService.get_user_by_id(pk)
       serializer = UserSerializer(users)
       return Response(serializer.data)
+
+   @swagger_auto_schema(tags=["User"])
+   def patch(self, request, pk):
+      user = UserService.get_user_by_id(pk)
+      if not user:
+         return Response({"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+      serializer = UserSerializer(user, data=request.data, partial=True)
+      if serializer.is_valid():
+         updated_user = UserService.update_user_profile(user, **serializer.validated_data)
+         return Response(UserSerializer(updated_user).data)
+
+      return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 
 
 class DepartmentsListAPIView(APIView):
@@ -185,5 +205,70 @@ def checkUser(request):
    return Response({'result':response}, status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+def getUsersDepartaments(request):
+
+   users = UserService.get_all_users()
+   serializer = UserCallSerializer(users, many=True)
+   return Response(serializer.data)
+
+from rest_framework import generics
+
+from .models import UserInvite
+from .serializers import (
+    UserInviteCreateSerializer,
+    UserInviteRetrieveSerializer,
+)
 
 
+class CreateInviteView(generics.CreateAPIView):
+    serializer_class = UserInviteCreateSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class RetrieveInviteView(generics.RetrieveAPIView):
+    permission_classes = [AllowAny]
+    queryset = UserInvite.objects.all()
+    serializer_class = UserInviteRetrieveSerializer
+    lookup_field = 'token'
+
+
+
+class RegisterView(APIView):
+   permission_classes = [AllowAny]
+
+   def post(self, request):
+      serializer = RegisterSerializer(data=request.data)
+      if serializer.is_valid():
+         result = RegService.register(**serializer.validated_data)
+         return Response(result, status=status.HTTP_201_CREATED)
+      return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PasswordResetRequestView(APIView):
+    permission_classes = []
+
+    def post(self, request):
+        email = request.data.get('email')
+        PasswordResetService.send_reset_email(
+            email=email,
+            domain=request.get_host(),
+            protocol=request.scheme
+        )
+        return Response({"detail": "Письмо отправлено (если пользователь существует)."}, status=status.HTTP_200_OK)
+
+
+class PasswordResetConfirmView(APIView):
+    permission_classes = []
+
+    def post(self, request):
+        uid = request.data.get("uid")
+        token = request.data.get("token")
+        password = request.data.get("password")
+
+        try:
+            PasswordResetService.reset_password(uid, token, password)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({"detail": "Пароль успешно изменён"}, status=status.HTTP_200_OK)

@@ -52,7 +52,7 @@ a{
   padding: 16px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
-  border-left: 4px solid #1976d2;
+  border-left: 4px solid var(--light-purple);
 }
 
 .task-card-overdue {
@@ -132,9 +132,9 @@ a{
 }
 
 .filter-button.active {
-  background: #1890ff;
+  background: var(--light-purple);
   color: white;
-  border-color: #1890ff;
+  border-color: var(--light-purple);
 }
 .task-filters {
   display: flex;

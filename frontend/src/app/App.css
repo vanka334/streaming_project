@@ -7,6 +7,7 @@
   --light-purple: #936CD6;
   --text-light: #ffffff;
   --text-muted: #e0d0ff;
+  --gradient-background:-webkit-linear-gradient(135deg, rgb(207, 181, 154), rgb(199, 155, 243), rgb(208, 228, 242));
 }
 
 * {
@@ -16,11 +17,6 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-  background-color: var(dark-purple-1);
-  color: #333;
-  width: 100%;
-}
 
 /* Лейаут приложения */
 

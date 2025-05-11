@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 from celery.schedules import crontab
+from django.core.cache.backends.redis import RedisCache
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-f96t4l3!yozx+q22c%*vz@-9ev3f202ykvgzs&2i5xv9e0wiw6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -49,7 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'rest_framework_simplejwt',
-    'django_prometheus',
+
     'django_extensions'
 ]
 
@@ -122,13 +123,22 @@ SIMPLE_JWT = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'streaming_platform',
-        'USER': 'postgres',
-        'PASSWORD': 'kuzinvano228',
-        'HOST': 'localhost',
+        'NAME': os.environ.get('POSTGRES_NAME', 'streaming_platform'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'kuzinvano228'),
+        'HOST': 'db',
         'PORT': '5432'
 
 
+    }
+}
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': os.environ.get('REDIS_URL', 'redis://redis:6379/0'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
     }
 }
 
@@ -167,7 +177,8 @@ AUTH_USER_MODEL = 'users.User'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 # Default primary key field type
@@ -181,3 +192,23 @@ CELERY_BEAT_SCHEDULE = {
     }
 }
 INSTALLED_APPS += ['django_celery_beat']
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'vano020284@gmail.com'
+EMAIL_HOST_PASSWORD = 'gklb kbug rfck ueiz'  # вставь сгенерированный пароль
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+JAZZMIN_SETTINGS = {
+    "custom_links": {
+        "main": [  # Название твоего приложения
+            {
+                "name": "Импорт / Экспорт",
+                "url": "import_export",  # name из urls.py
+                "icon": "fas fa-file-import",
+                "permissions": ["auth.view_user"],
+            },
+        ]
+    }
+}

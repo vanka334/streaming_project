@@ -1,6 +1,6 @@
 .mainContent {
   grid-area: main;
-  background-color: var(--dark-purple-1);
+
   padding: 2rem;
   overflow-y: auto;
   width: 100%;

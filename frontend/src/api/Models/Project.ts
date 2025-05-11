@@ -7,6 +7,7 @@ export interface Project {
   name: string;
   description: string;
   users_detail: User[];
+  avatar?:string;
   statistics?: {
     total_tasks: number;
     completed_tasks: number;

@@ -5,7 +5,7 @@
 .create-project-button {
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #4caf50;
+  background-color: var(--light-purple);
   border: none;
   color: white;
   cursor: pointer;

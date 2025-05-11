@@ -16,14 +16,16 @@
 }
 
 .avatar-container {
+  position: relative;
   width: 120px;
   height: 120px;
 }
 
-.user-avatar {
+.user-avatar-bio {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+
   object-fit: cover;
 }
 
@@ -138,4 +140,20 @@
 
 .logout-button:hover {
   background-color: #d32f2f;
+}
+.avatar-edit-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #2196f3;
+  color: white;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+  border: 2px solid white;
+  z-index: 1;
 }

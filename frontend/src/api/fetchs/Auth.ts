@@ -8,10 +8,7 @@ interface TokenResponse {
   refresh: string;
 }
 
-interface LoginCredentials {
-  username: string;
-  password: string;
-}
+
 
 export const login = async (credentials: { password: string; username: string }): Promise<void> => {
   const response = await api.post<TokenResponse>('/users/token/', credentials);

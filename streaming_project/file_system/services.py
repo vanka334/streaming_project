@@ -6,20 +6,29 @@ from file_system.models import Folder
 from file_system.models import File
 
 
+def find_root_folder(folder: Folder) -> Folder:
+    while folder.parent is not None:
+        folder = folder.parent
+    return folder
 class FileSystemService:
+
    @staticmethod
    def get_struct_by_directory(department, directory_id = None):
        if directory_id:
-           print("if dir_id")
+
            folder = get_object_or_404(Folder, id=directory_id)
+           root_folder = get_object_or_404(Folder,name=department.folder)
 
        else:
-           print("else dir_id")
+
            folder = get_object_or_404(Folder,name=department.folder)
+           root_folder = folder
        folders = folder.subfolders.all()
-       print(folders)
+
        files = folder.files.all()
+
        response = {
+           'core_folder_id': root_folder.pk,
            'folders': folders,
            'files': files
            }

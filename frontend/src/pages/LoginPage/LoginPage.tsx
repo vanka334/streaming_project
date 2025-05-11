@@ -1,6 +1,6 @@
 // src/pages/LoginPage/LoginPage.tsx
 import React, {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { login } from '../../api/fetchs/Auth';
 import './LoginPage.css';
 
@@ -53,22 +53,22 @@ export default function  LoginPage(){
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
-              id="username"
+                id="username"
 
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
             />
           </div>
 
           <div className="form-group">
             <label htmlFor="password">Пароль</label>
             <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
             />
           </div>
 
@@ -76,6 +76,11 @@ export default function  LoginPage(){
             {loading ? 'Вход...' : 'Войти'}
           </button>
         </form>
+        <p>
+          <Link to="/forgot-password" className="forgot-password-link">
+            Забыли пароль?
+          </Link>
+        </p>
       </div>
     </div>
   );

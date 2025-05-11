@@ -16,7 +16,11 @@ interface TaskUnitProps {
 
 export const TaskUnit = React.memo(({ task, onClick, getUserDisplay,isPreCommit }: TaskUnitProps) => {
     const currentUserId = parseInt(localStorage.getItem("user_id"));
-    const isExecutor = task.executor_detail?.id === currentUserId;
+    const isExecutor =
+  typeof task.executor_detail === "object" &&
+  task.executor_detail !== null &&
+  "id" in task.executor_detail &&
+  task.executor_detail.id === currentUserId;
     const [commit,setCommit] = useState<string>(null);
     const [isCommited,setIsCommited] = useState<string>(null)
     const handleCommit = async(taskId:number) =>{

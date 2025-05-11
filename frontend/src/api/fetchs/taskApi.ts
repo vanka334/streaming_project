@@ -15,33 +15,32 @@ export const fetchStatuses = async (): Promise<Status[]> => {
 export const updateTaskStatus = async (taskId: number, statusId: number): Promise<void> => {
   await api.patch(`/taskmanager/task/${taskId}/`, { status: statusId });
 };
-
 export const createTask = async (taskData: {
   name: string;
   description: string;
   status_detail: number;
   setter_detail: number;
   executor_detail: number | null;
-}): Promise<{
-  id: number;
-  name: string;
-  description: string;
-  comments?: Comment[];
-}> => {
-  // Переименовываем поля перед отправкой
+  project:number;
+  deadline: string;
+}) => {
   const payload = {
     name: taskData.name,
     description: taskData.description,
     status: taskData.status_detail,
     setter: taskData.setter_detail,
     executor: taskData.executor_detail,
+    project:taskData.project,
+    deadline: taskData.deadline
   };
 
-  await api.post('/taskmanager/task/', payload, {
+  const res = await api.post('/taskmanager/task/', payload, {
     headers: {
-      'Content-Type': 'application/json', // Убедитесь, что заголовок установлен
+      'Content-Type': 'application/json',
     },
   });
+
+  return res.data; // 💡 добавь это
 };
 export const updateTask = async (
   taskId: number,
@@ -51,6 +50,7 @@ export const updateTask = async (
     status_detail: number;
     setter_detail: number;
     executor_detail: number | null;
+    deadline: string;
   }
 ): Promise<void> => {
   const payload = {
@@ -59,6 +59,7 @@ export const updateTask = async (
     status: taskData.status_detail,
     setter: taskData.setter_detail,
     executor: taskData.executor_detail,
+    deadline: taskData.deadline
   };
 
   await api.put(`/taskmanager/task/${taskId}/`, payload, {

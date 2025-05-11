@@ -1,14 +1,29 @@
 .sidebar {
+  position: sticky; /* или fixed */
+  top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #c4b2e2 transparent;
+
+  /* остальное без изменений */
   grid-area: sidebar;
-  background-color: var(--dark-purple-2);
-  color: var(--text-light);
+  background-color: #fff;
+  color: #000;
   padding: 1.5rem 0;
-  height: 100%;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+  border-radius: 12px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 4rem); /* чтобы учитывать отступы */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .menu {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .menuItem {
@@ -18,22 +33,21 @@
 .menuLink {
   display: block;
   padding: 0.8rem 1.5rem;
-  color: var(--text-muted);
+  color: #000; /* Чёрный текст */
+  background-color: white; /* Белый фон */
   text-decoration: none;
-  transition: all 0.3s;
-  border-left: 3px solid transparent;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
 }
 
 .menuLink:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  color: var(--text-light);
-  border-left-color: var(--accent-purple-2);
+  background-color: #f1f1f1;
+  color: #A168D5; /* Цвет текста при наведении */
 }
 
 .menuLink.active {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--text-light);
-  border-left-color: var(--light-purple);
+  background-color: #f3eaff;
+  color: #A168D5;
 }
 
 @media (max-width: 768px) {

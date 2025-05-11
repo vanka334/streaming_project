@@ -1,33 +1,55 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.tokens import default_token_generator
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from users.models import Department, Project
+from notifications.task import send_event_notification
+from .models import UserInvite
 
 User = get_user_model()
 
 
 class RegService:
 
+
     @staticmethod
-    def register(username, email, password):
-        # Проверяем, что пользователь с таким email или username не существует
+    def register(username, email, password, name, surname, patronymic,token):
+
         if User.objects.filter(email=email).exists():
-            raise ValidationError({"email": f"Пользователь с таким email уже зарегистрирован. вот: {User.objects.filter(email=email)}"})
+            raise ValidationError({"email": "Пользователь с таким email уже зарегистрирован."})
         if User.objects.filter(username=username).exists():
             raise ValidationError({"username": "Пользователь с таким username уже зарегистрирован."})
 
-        # Создаем пользователя
-        user =User.objects.create_user(
+        user = User.objects.create_user(
             username=username,
             email=email,
-            password=password
+            password=password,
+            name=name,
+            surname=surname,
+            patronymic=patronymic
         )
 
-        # Генерируем токены
         refresh = RefreshToken.for_user(user)
+
+        if token:
+            try:
+                invite = UserInvite.objects.get(token=token, is_used=False)
+                departments = invite.created_by.departments.filter(isManagement=False)
+                print(departments)
+                print("вроде вот")
+                if departments.exists():
+                    user.departments.add(departments.first())
+                    print(departments.first())
+                    print(user.departments)
+                invite.is_used = True
+                invite.save()
+            except UserInvite.DoesNotExist:
+                print('OSHIBKA NAXUI')  # Можно залогировать
         return {
             "user": user.email,
             "tokens": {
@@ -35,6 +57,8 @@ class RegService:
                 "refresh": str(refresh),
             },
         }
+
+
 class DepartmentService:
     @staticmethod
     def get_all_departments():
@@ -99,6 +123,24 @@ class UserService:
     def get_all_users():
         return User.objects.all()
 
+    @staticmethod
+    def update_user_profile(user, email=None, avatar=None, bio=None, name=None, surname=None, patronymic=None):
+
+        if email is not None:
+            user.email = email
+        if avatar is not None:
+            user.avatar = avatar
+        if bio is not None:
+            user.bio = bio
+        if name is not None:
+            user.name = name
+        if surname is not None:
+            user.surname = surname
+        if patronymic is not None:
+            user.patronymic = patronymic
+
+        user.save()
+        return user
 
 
 class ProjectService:
@@ -178,3 +220,37 @@ class ProjectService:
         return False
 
 
+
+class PasswordResetService:
+
+    @staticmethod
+    def send_reset_email(email: str, domain: str, protocol: str = "https") -> None:
+        user = User.objects.filter(email=email).first()
+        if not user:
+            return  # не палим существование пользователя
+
+        token = default_token_generator.make_token(user)
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        link = f"{protocol}://{domain}/reset-password?uid={uid}&token={token}"
+        send_event_notification.delay(
+            event_code='reset_password',
+            sender_id=1,
+            receiver_id=user.id,
+            context={"reset_link": link}
+
+        )
+
+
+    @staticmethod
+    def reset_password(uidb64: str, token: str, new_password: str) -> None:
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except Exception:
+            raise ValidationError("Невалидная ссылка")
+
+        if not default_token_generator.check_token(user, token):
+            raise ValidationError("Ссылка недействительна или устарела")
+
+        user.set_password(new_password)
+        user.save()

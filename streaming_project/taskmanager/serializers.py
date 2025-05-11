@@ -5,6 +5,8 @@ from taskmanager.models import Task, Status, Comment
 
 from users.serializers import UserSerializer
 
+from users.models import Project
+
 User = get_user_model()
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,7 +26,7 @@ class TaskSerializer(serializers.ModelSerializer):
         allow_null=True,
         write_only=True
     )
-
+    project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
     # Для чтения (GET) — возвращаем полные объекты
     status_detail = StatusSerializer(source='status', read_only=True)
     setter_detail = UserSerializer(source='setter', read_only=True)

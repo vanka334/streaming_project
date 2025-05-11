@@ -104,14 +104,7 @@
 }
 
 /* Иконки */
-.folders-list li::before {
-  content: '📁';
-  margin-right: 8px;
-}
 
-.files-list a::before {
-  content: '📄';
-}
 
 /* Состояния загрузки и ошибки */
 .loading-message, .error-message {

@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f5f5f5;
+
   padding: 20px;
 }
 
@@ -51,26 +51,8 @@
   border-color: #1976d2;
 }
 
-button {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #1976d2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-button:hover {
-  background-color: #1565c0;
-}
 
-button:disabled {
-  background-color: #90caf9;
-  cursor: not-allowed;
-}
 
 .error-message {
   color: #d32f2f;
@@ -79,4 +61,17 @@ button:disabled {
   border-radius: 5px;
   margin-bottom: 1.2rem;
   text-align: center;
+}
+.forgot-password-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #2f80ed;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+  color: #1366d6;
+  text-decoration: underline;
 }

@@ -23,16 +23,20 @@ from drf_yasg.views import get_schema_view
 
 from . import settings
 from .swagger import urlpatterns as swagger_urls
-
-
+from .view import AllModelsView,  import_data, download_db_backup
 
 urlpatterns = [
 
-    path('admin/', admin.site.urls),
+    path('api/admin/', admin.site.urls),
     path('api/v1/users/', include('users.urls')),
     path('api/v1/files/', include('file_system.urls')),
     path('api/v1/taskmanager/', include('taskmanager.urls')),
+    path("api/v1/video/", include("meetings.urls")),
     path('api/', include(swagger_urls)),
     path('metrics/', include('django_prometheus.urls')),
+    path('api/import-export/', AllModelsView.as_view(), name='import_export'),
+
+    path('api/import-export/import/', import_data, name='import_data'),
+    path('api/import-export/backup/', download_db_backup, name='download_db_backup'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

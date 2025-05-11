@@ -1,5 +1,7 @@
 import {Status} from "./Status.ts";
 import {User} from "./User.ts";
+import {Project} from "./Project.ts";
+
 
 export interface Task {
   id: number;
@@ -9,9 +11,10 @@ export interface Task {
   setter_detail: User | number;
   executor_detail: User | number | null;
   comments?: Comment[];
-  isDone?: boolean
-  is_overdue?: boolean
-  deadline: string
-  created_at: string
+  isDone?: boolean;
+  is_overdue?: boolean;
+  deadline?: string;
+  created_at?: string;
+  project?:Project | number;
 
 }

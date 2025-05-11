@@ -2,6 +2,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 
 from .models import Status, Task, Comment
+from notifications.task import send_event_notification
 
 class StatusService:
     @staticmethod
@@ -49,15 +50,23 @@ class StatusService:
 
 class TaskService:
     @staticmethod
-    def create_task(name, description, setter, executor=None, status=None):
+    def create_task(name, description,project, setter, deadline, executor=None, status=None):
         if status is None:
             status = Status.objects.get(isDefault=True)
+        send_event_notification.delay(
+            event_code='create_task',
+            sender_id=setter.id,
+            receiver_id=executor.id if executor is not None else setter.id,
+            context={"name": name, "description": description, 'project': project.name, 'deadline':deadline}
+        )
         return Task.objects.create(
             name=name,
             description=description,
             setter=setter,
+            deadline=deadline,
             executor=executor,
-            status=status
+            status=status,
+            project=project
         )
 
     @staticmethod
@@ -96,7 +105,7 @@ class TaskService:
 
 
     @staticmethod
-    def update_task(task_id, name=None, description=None, status=None,setter=None, executor=None):
+    def update_task(task_id, name=None, description=None, status=None,setter=None, executor=None, deadline=None):
         task = TaskService.get_task_by_id(task_id)
         if task:
             if name is not None:
@@ -108,8 +117,11 @@ class TaskService:
             if status is not None:
                 task.isDone = False
                 task.status = status
+
             if executor is not None:
                 task.executor = executor
+            if deadline is not None:
+                task.deadline = deadline
             task.save()
         return task
 
@@ -123,16 +135,36 @@ class TaskService:
     def commit_task( task_id):
         task = TaskService.get_task_by_id(task_id)
         task.isDone = True
+        send_event_notification.delay(
+            event_code='commit_task',
+            sender_id=task.setter.id,
+            receiver_id=task.executor.id if task.executor is not None else task.setter.id,
+            context={"name": task.name, "description": task.description, 'project': task.project.name}
+        )
         task.save()
     @staticmethod
     def reject_task(task_id):
         task = TaskService.get_task_by_id(task_id)
         default_status = StatusService.get_default_status()
         task.status = default_status
+        send_event_notification.delay(
+            event_code='reject_task',
+            sender_id=task.setter.id,
+            receiver_id=task.executor.id if task.executor is not None else task.setter.id,
+            context={"name": task.name, "description": task.description, 'project': task.project.name}
+        )
         task.save()
 class CommentService:
     @staticmethod
     def create_comment(task, author, text):
+        reciever = task.setter.id if author.id == task.executor.id else task.executor.id
+        send_event_notification.delay(
+            event_code='new_comment',
+            sender_id=author.id,
+            receiver_id=reciever,
+            context={"author": author.name, "text": text, "task_name": task.name, "project": task.project.name}
+
+        )
         return Comment.objects.create(
             task=task,
             author=author,

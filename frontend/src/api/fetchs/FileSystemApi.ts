@@ -1,12 +1,13 @@
-import axios from "axios";
+
 import {Folder} from "../Models/Folder.ts";
 import api from "../interceptors.ts";
 import {FolderCreate} from "../Models/FolderCreate.ts";
-
+import {FileModel} from "../Models/FileModel.ts";
 
 export interface FileSystemResponse {
+    core_folder_id:number;
   folders: Folder[];
-  files: File[];
+  files: FileModel[];
 }
 export const fetchFileSystem = async (currentDirectory: number | null): Promise<FileSystemResponse> => {
     const params = new URLSearchParams();
@@ -16,7 +17,7 @@ export const fetchFileSystem = async (currentDirectory: number | null): Promise<
     }
 
     const response = await api.get(
-        `http://localhost:8000/api/v1/files/filesystem/`,
+        `/files/filesystem/`,
         { params }
     );
 
@@ -42,10 +43,10 @@ export const fetchFileBlob = async (filePath: string): Promise<Blob> => {
   return response.blob(); // Возвращаем blob-данные
 };
 
-export const fetchCreateFile = async (folderId: number, file: File, name: string ): Promise<any> => {
+export const fetchCreateFile = async (folderId: number|null, file: File, name: string ): Promise<any> => {
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('folder', folderId.toString());
+  formData.append('folder', folderId!.toString()!);
   formData.append('name', name);
 
   const response = await api.post('files/file/', formData, {

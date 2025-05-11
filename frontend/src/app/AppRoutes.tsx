@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import React from "react";
+
 import {MainPage} from "../pages/MainPage/MainPage.tsx";
 import {ProtectedRoute} from "../pages/ProtectedRoutes/ProtectedRoutes.tsx";
 import Tasks from "../ui/BodyComponents/Tasks/Tasks.tsx";

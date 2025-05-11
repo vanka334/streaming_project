@@ -1,7 +1,7 @@
 import './LeftMenu.css';
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {fetchUserData} from "../../../api/fetchs/userApi.ts";
+import {fetchIsManager, fetchUserData} from "../../../api/fetchs/userApi.ts";
 import {User} from "../../../api/Models/User.ts";
 
  const LeftMenu = () =>
@@ -10,10 +10,16 @@ import {User} from "../../../api/Models/User.ts";
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isManager, setIsManager] = useState<boolean>(false);
   const currentUserId = localStorage.getItem('user_id');
+
      useEffect(() => {
+         const checkManagerStatus = async () => {
+         const result = await fetchIsManager(parseInt(currentUserId));
+         setIsManager(result['result']); // предполагаем, что API возвращает boolean
+         }
          const loadUserData = async () => {
-      try {
+             try {
         if (userId) {
           const userData = await fetchUserData(Number(userId));
           setUser(userData);
@@ -26,6 +32,7 @@ import {User} from "../../../api/Models/User.ts";
     };
 
     loadUserData();
+    checkManagerStatus();
   }, [userId]);
 
 
@@ -48,9 +55,30 @@ import {User} from "../../../api/Models/User.ts";
               </Link>
           </li>
           <li>
-              <a href={"/user/"+ currentUserId}>Профильь</a>
+              <Link to={"/user/" + currentUserId} className={`menuLink ${location.pathname === '/user/' ? 'active' : ''}`}>Профильь</Link>
           </li>
+          <li className="menuItem">
+              <Link
+                 to="/videocall"
+
+                  className={`menuLink ${location.pathname === '/videocall' ? 'active' : ''}`}
+              >
+                  Видеозвонок
+              </Link>
+          </li>
+          {isManager == true &&(
+          <li className="menuItem">
+              <Link
+                  to="/invite"
+
+                  className={`menuLink ${location.pathname === '/invite' ? 'active' : ''}`}
+              >
+                  Создать приглашение
+              </Link>
+          </li>)}
+
       </ul>
   </aside>
- )}
+     )
+ }
 export default LeftMenu;

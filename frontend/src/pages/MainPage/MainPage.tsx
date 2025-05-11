@@ -1,15 +1,13 @@
 // src/components/Layout/MainLayout.tsx
-import {Outlet, Route, Routes} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import "./MainPage.css"
 import LeftMenu from "../../ui/MainComponents/LeftMenu/LeftMenu.tsx";
 import BodyComponent from "../../ui/MainComponents/Main/BodyComponent.tsx";
-import {fetchTasks} from "../../api/fetchs/taskApi.ts";
-import Tasks from "../../ui/BodyComponents/Tasks/Tasks.tsx";
-import React, {useEffect} from "react";
-import FileSystemBrowser from "../../ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.tsx";
-import {ProtectedRoute} from "../ProtectedRoutes/ProtectedRoutes.tsx";
+
+import  {useEffect} from "react";
+
 import {fetchUserData} from "../../api/fetchs/userApi.ts";
-import {User} from "../../api/Models/User.ts";
+
 
 export const MainPage = () => {
   useEffect(() => {

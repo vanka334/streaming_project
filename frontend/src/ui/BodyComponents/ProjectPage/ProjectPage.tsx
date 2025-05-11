@@ -82,15 +82,13 @@ checkManagerStatus();
         ) : (
           projects.map(project => (
             <div key={project.id} className="project-card">
-              <a href={`/projects/${project.id}`}><h2>{project.name}</h2></a>
+              <span> <img
+                  src={project.avatar || '/default-avatar.png'}
+                  alt="avatar"
+                  className="user-avatar"
+              /></span>
+              <span> <a href={`/projects/${project.id}`}><h2>{project.name}</h2></a></span>
               <p>{project.description}</p>
-              {project.users_detail && project.users_detail.length > 0 && (
-                <div className="project-users">
-
-                  <strong>Пользователи:</strong>{' '}
-                  {project.users_detail.map(user => user.username).join(', ')}
-                </div>
-              )}
               {isManager &&(
               <div className="project-actions">
                 <button onClick={() => openEditModal(project)}>Редактировать</button>

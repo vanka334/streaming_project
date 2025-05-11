@@ -1,0 +1,51 @@
+.register-page {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 32px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.register-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.register-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.register-input.disabled {
+  background-color: #f3f3f3;
+  color: #888;
+}
+
+.register-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background-color: #1366d6;
+}
+
+.register-error {
+  color: red;
+  text-align: center;
+  padding: 16px;
+}

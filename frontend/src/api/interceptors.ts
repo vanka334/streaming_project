@@ -7,7 +7,11 @@ import axios, {
   AxiosHeaders,
   RawAxiosRequestHeaders
 } from 'axios';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode, JwtPayload} from 'jwt-decode';
+// Расширяем тип
+interface CustomJwtPayload extends JwtPayload {
+  user_id?: number;
+}
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1/';
 const api: AxiosInstance = axios.create({
   baseURL:API_URL ,
@@ -16,9 +20,11 @@ const api: AxiosInstance = axios.create({
 // Функции для работы с токенами (остаются без изменений)
 export const setTokens = (access: string, refresh: string) => {
   localStorage.setItem('accessToken', access);
-  const decoded = jwtDecode(access);
-  const userId  = decoded.user_id.toString();
-  if (typeof userId === "string") {
+
+  const decoded = jwtDecode<CustomJwtPayload>(access);
+ // Добавьте проверку на существование user_id
+  if (decoded.user_id!) {
+    const userId = decoded.user_id!.toString();
     localStorage.setItem('user_id', userId);
   }
   localStorage.setItem('refreshToken', refresh);

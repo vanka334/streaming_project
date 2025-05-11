@@ -1,6 +1,6 @@
 import styles from "./BodyComponent.module.css"
 import * as React from "react";
-import {ReactNode, useEffect, useState} from "react";
+
 interface BodyComponentProps{
      children: React.ReactNode;
 }
