@@ -4,96 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b2ef2ba-61b6-483a-9554-52570e3666f8" name="Changes" comment="commit4">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.override.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ForgotPasswordPage/ForgotPasswordPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ForgotPasswordPage/ForgotPasswordPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/RegisterPage/RegisterPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/RegisterPage/RegisterPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ResetPasswordPage/ResetPasswordPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ResetPasswordPage/ResetPasswordPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/CreateVideoCall/CreateVideoCall.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/CreateVideoCall/CreateVideoCall.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/CreateVideoCall/VideoRoom/ParticipiantView/ParticipiantView.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/CreateVideoCall/VideoRoom/ParticipiantView/ParticipiantView.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/CreateVideoCall/VideoRoom/VideoRoom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/CreateVideoCall/VideoRoom/VideoRoom.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/CreateVideoCall/VideoRoom/VideoRoomWrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/InviteUser/InviteUser.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/InviteUser/InviteUser.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/livekit/livekit.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nginx/default.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streaming_project/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streaming_project/meetings/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streaming_project/notifications/services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streaming_project/notifications/task.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streaming_project/streaming_project/livekit_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streaming_project/streaming_project/view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streaming_project/templates/admin/import_export.html" afterDir="false" />
+    <list default="true" id="6b2ef2ba-61b6-483a-9554-52570e3666f8" name="Changes" comment="finally">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/Models/File.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/Models/FileModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/Models/FolderCreate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/Models/FolderCreate.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/Models/Project.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/Models/Project.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/Models/Task.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/Models/Task.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/fetchs/Auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/Auth.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/api/fetchs/FileSystemApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/FileSystemApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/fetchs/ProjectApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/ProjectApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/fetchs/taskApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/taskApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/fetchs/userApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/fetchs/userApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/interceptors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/interceptors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/AppRoutes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/AppRoutes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/LoginPage/LoginPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/LoginPage/LoginPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/LoginPage/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/LoginPage/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MainPage/MainPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MainPage/MainPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/FileSystemBrowser/FileSystemBrowser.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/ProjectPage/ProjectPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/ProjectPage/ProjectPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/ProjectPage/ProjectPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/ProjectPage/ProjectPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/AddTaskModal/AddTaskModal.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/AddTaskModal/AddTaskModal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/AddTaskModal/AddTaskModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/AddTaskModal/AddTaskModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/EditTaskModal/EditTaskModal.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/EditTaskModal/EditTaskModal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/EditTaskModal/EditTaskModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/EditTaskModal/EditTaskModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/TaskUnit/TaskUnit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/TaskUnit/TaskUnit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/Tasks.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/Tasks.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/Tasks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/Tasks/Tasks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/UserProfilePage/UserProfilePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/UserProfilePage/UserProfilePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/UserProfilePage/UserProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/BodyComponents/UserProfilePage/UserProfilePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/MainComponents/LeftMenu/LeftMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/MainComponents/LeftMenu/LeftMenu.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/ui/MainComponents/LeftMenu/LeftMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/MainComponents/LeftMenu/LeftMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/MainComponents/Main/BodyComponent.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/MainComponents/Main/BodyComponent.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/ui/MainComponents/Main/BodyComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/ui/MainComponents/Main/BodyComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/file_system/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/file_system/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/file_system/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/file_system/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/streaming_project/file_system/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/file_system/services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/streaming_project/file_system/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/file_system/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/meetings/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/meetings/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/streaming_project/meetings/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/meetings/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/meetings/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/meetings/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/streaming_project/notifications/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/notifications/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/streaming_project/notifications/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/notifications/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/streaming_project/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/streaming_project/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/streaming_project/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/streaming_project/celery.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/streaming_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/streaming_project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/streaming_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/streaming_project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/streaming_project/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/streaming_project/view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streaming_project/taskmanager/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/taskmanager/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/streaming_project/taskmanager/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/taskmanager/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/taskmanager/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/taskmanager/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/taskmanager/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/taskmanager/services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/streaming_project/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/users/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streaming_project/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/streaming_project/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +85,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.start.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "configurable.group.tools",
     "ts.external.directory.path": "C:\\Users\\Vanya\\PycharmProjects\\streamin_proj\\frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -353,7 +282,7 @@
       <workItem from="1746729766431" duration="1080000" />
       <workItem from="1746746153650" duration="44243000" />
       <workItem from="1746872339966" duration="24826000" />
-      <workItem from="1746953980770" duration="21525000" />
+      <workItem from="1746953980770" duration="29145000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -387,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746193133404</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="finally">
+      <option name="closed" value="true" />
+      <created>1746993747573</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746993747573</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,6 +349,7 @@
     <MESSAGE value="commit2" />
     <MESSAGE value="commit3" />
     <MESSAGE value="commit4" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit4" />
+    <MESSAGE value="finally" />
+    <option name="LAST_COMMIT_MESSAGE" value="finally" />
   </component>
 </project>

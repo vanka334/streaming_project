@@ -4,7 +4,7 @@ import { FileModel } from "../../../api/Models/FileModel.ts";
 import { useEffect, useState, useRef } from "react";
 import {
   fetchCreateFolder,
-  fetchDeleteFile,
+  fetchDeleteFile, fetchDeleteFolder,
   fetchFileBlob,
   fetchFileSystem,
   FileSystemResponse
@@ -12,6 +12,7 @@ import {
 import { fetchCreateFile } from "../../../api/fetchs/FileSystemApi.ts";
 import './FileSystemBrowser.css';
 import { FolderCreate } from "../../../api/Models/FolderCreate.ts";
+import api from "../../../api/interceptors.ts";
 
 export default function FileSystemBrowser() {
   const [currentDirectory, setCurrentDirectory] = useState<number | null>(null);
@@ -124,6 +125,22 @@ useEffect(() => {
     fileInputRef.current?.click();
   };
 
+const handleDeleteFolder = async (folderId: number) => {
+  if (!window.confirm("Вы уверены, что хотите удалить эту папку со всем содержимым?")) return;
+
+  try {
+    await fetchDeleteFolder(folderId);
+    setFileSystem(prev => ({
+      ...prev,
+      folders: prev.folders.filter(folder => folder.id !== folderId)
+    }));
+    alert("Папка успешно удалена");// или аналогичная функция
+  } catch (err) {
+    console.error("Ошибка при удалении папки", err);
+    alert("Не удалось удалить папку");
+  }
+};
+
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file || currentDirectory === null) return;
@@ -200,9 +217,20 @@ useEffect(() => {
         ) : (
           <ul>
             {fileSystem.folders.map(folder => (
-              <li key={folder.id} onClick={() => navigateToFolder(folder)} style={{ cursor: 'pointer' }}>
-                📁 {folder.name}
-              </li>
+                <li key={folder.id}>
+                  <div className="folder-item" onClick={() => navigateToFolder(folder)}>
+                    <span>📁 {folder.name}</span>
+                    <button
+                        className="delete-button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteFolder(folder.id);
+                        }}
+                    >
+                      Удалить
+                    </button>
+                  </div>
+                </li>
             ))}
           </ul>
         )}
@@ -211,18 +239,20 @@ useEffect(() => {
       <div className="files-list">
         <h3>Файлы</h3>
         {fileSystem.files.length === 0 ? (
-          <p>Файлов нет</p>
+            <p>Файлов нет</p>
         ) : (
-          <ul>
-            {fileSystem.files.map(file => (
-              <li key={file.id}>
-                <a href={api_url + file.file} rel="noopener noreferrer" download>
-                  📄 {decodeURIComponent(file.file.split('/').pop() || '')}
-                </a>
-                <button onClick={() => handleDeleteFile(file.id)}>x</button>
-              </li>
-            ))}
-          </ul>
+            <ul>
+              {fileSystem.files.map(file => (
+                  <li key={file.id}>
+                    <div className="file-item">
+                      <a href={api_url + file.file} rel="noopener noreferrer" download>
+                        📄 {decodeURIComponent(file.file.split('/').pop() || '')}
+                      </a>
+                      <button className="delete-button" onClick={() => handleDeleteFile(file.id)}>Удалить</button>
+                    </div>
+                  </li>
+              ))}
+            </ul>
         )}
       </div>
     </div>

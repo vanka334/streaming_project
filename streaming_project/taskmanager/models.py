@@ -47,13 +47,14 @@ def set_default_executor(sender, instance, **kwargs):
         instance.executor = instance.setter
 
 class Comment(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-    text = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
-
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='comments', verbose_name="Задача")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments', verbose_name="Автор")
+    text = models.TextField(verbose_name="Текст комментария")
+    created_at = models.DateTimeField(default=timezone.now, verbose_name="Создан")
     def __str__(self):
         return f'Комментарий от {self.author} в {self.task.name}'
 
     class Meta:
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
         ordering = ['-created_at']

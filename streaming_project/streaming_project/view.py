@@ -77,7 +77,7 @@ def import_data(request):
 
 def download_db_backup(request):
     try:
-        db_name = os.environ.get('POSTGRES_DB')
+        db_name = os.environ.get('POSTGRES_NAME')
         db_user = os.environ.get('POSTGRES_USER')
         db_password = os.environ.get('POSTGRES_PASSWORD')
         db_host = os.environ.get('DB_HOST', 'localhost')

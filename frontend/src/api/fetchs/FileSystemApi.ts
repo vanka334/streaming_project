@@ -60,6 +60,9 @@ export const fetchCreateFile = async (folderId: number|null, file: File, name: s
 export const fetchDeleteFile = async(file_Id:number)=>{
     await api.delete(`files/file/?file_Id=${file_Id}` )
 }
+export const fetchDeleteFolder = async(folder_Id:number)=>{
+    await api.delete(`files/folder/?folder_Id=${folder_Id}` )
+}
 export const fetchCreateFolder = async (folder: FolderCreate): Promise<Folder> => {
   const response = await api.post<Folder>('files/folder/', folder); // Указываем, что возвращается `Folder`
   return response.data; // Предполагаем, что сервер возвращает созданную папку

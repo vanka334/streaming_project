@@ -120,7 +120,27 @@
 .error-message {
   color: #d32f2f;
 }
-
+.delete-button {
+  color: #d32f2f;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.delete-button:hover {
+  text-decoration: underline;
+}
+.folder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
 /* Адаптивность */
 @media (max-width: 600px) {
   .file-system-browser {

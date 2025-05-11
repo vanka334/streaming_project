@@ -96,10 +96,11 @@ class FolderAPIView(APIView):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     def delete(self, request):
-        id = request.data["folder_id"]
+        id = request.query_params.get("folder_Id")
         folder = Folder.objects.get(pk = id)
-        if(folder):
-            if(services.FileSystemService.delete_folder(folder)):
+        print(folder)
+        if folder:
+            if services.FileSystemService.delete_folder(folder):
                 return Response({'status': 'Success'}, status=status.HTTP_200_OK)
             else: return Response({'status': 'Error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else: return Response({'status': 'Error'}, status=status.HTTP_404_NOT_FOUND)

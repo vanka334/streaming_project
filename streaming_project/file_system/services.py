@@ -61,13 +61,14 @@ class FileSystemService:
        folder = Folder.objects.create(
            name=validated_data['name'],
 
-           path=path,
+           path=f"{path}/{validated_data['name']}",
            parent=parent_folder
        )
        folder.departments.set(parent_folder.departments.all())
        print(folder)
        return folder
-   def delete_folder(self, folder):
+   @staticmethod
+   def delete_folder(folder):
        folder.delete()
        return True
         

@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from django.apps import apps
 # Create your models here.
@@ -9,6 +10,8 @@ from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 
 from users.models import Department
+
+from streaming_project import settings
 
 
 class Folder(models.Model):
@@ -91,3 +94,8 @@ def delete_file_on_model_delete(sender, instance, **kwargs):
     if instance.file:
         if os.path.isfile(instance.file.path):
             instance.file.delete(save=False)
+@receiver(post_delete, sender=Folder)
+def delete_folder_on_model_delete(sender, instance, **kwargs):
+    folder_path = os.path.join(settings.MEDIA_ROOT, instance.path)
+    if os.path.isdir(folder_path):
+        shutil.rmtree(folder_path)

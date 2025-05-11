@@ -55,7 +55,7 @@ import {User} from "../../../api/Models/User.ts";
               </Link>
           </li>
           <li>
-              <Link to={"/user/" + currentUserId} className={`menuLink ${location.pathname === '/user/' ? 'active' : ''}`}>Профильь</Link>
+              <Link to={"/user/" + currentUserId} className={`menuLink ${location.pathname === '/user/' ? 'active' : ''}`}>Профиль</Link>
           </li>
           <li className="menuItem">
               <Link
